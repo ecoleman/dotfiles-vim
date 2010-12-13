@@ -39,3 +39,5 @@ noremap <C-d> :NERDTreeToggle<CR>
 "autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
+command W w !sudo tee % > /dev/null
+
