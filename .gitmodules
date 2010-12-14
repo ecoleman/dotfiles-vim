@@ -16,3 +16,6 @@
 [submodule "bundle/CSApprox"]
 	path = bundle/CSApprox
 	url = git://github.com/godlygeek/csapprox.git
+[submodule "bundle/mustache.vim"]
+	path = bundle/mustache.vim
+	url = git://github.com/lukerandall/mustache-vim.git
