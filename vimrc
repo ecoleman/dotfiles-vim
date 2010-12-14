@@ -30,6 +30,8 @@ set nowrap
 
 set mouse-=a
 
+colorscheme no_quarter
+
 " Mappings
 noremap <C-d> :NERDTreeToggle<CR>
 
