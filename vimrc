@@ -43,6 +43,8 @@ noremap <C-d> :NERDTreeToggle<CR>
 "autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 "autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType php set softtabstop=4
+autocmd FileType php set shiftwidth=4
 
 command W w !sudo tee % > /dev/null
 
