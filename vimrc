@@ -45,6 +45,12 @@ noremap <C-d> :NERDTreeToggle<CR>
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType php set softtabstop=4
 autocmd FileType php set shiftwidth=4
+autocmd BufNewFile,BufRead *.json set ft=javascript
+
+if bufwinnr(1)
+  map + <C-W>+
+  map - <C-W>-
+endif
 
 command W w !sudo tee % > /dev/null
 
