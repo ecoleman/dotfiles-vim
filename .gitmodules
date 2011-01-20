@@ -28,3 +28,6 @@
 [submodule "bundle/supertab"]
 	path = bundle/supertab
 	url = git://github.com/ervandew/supertab.git
+[submodule "bundle/textile-for-vim"]
+	path = bundle/textile-for-vim
+	url = git://github.com/vim-scripts/Textile-for-VIM.git
