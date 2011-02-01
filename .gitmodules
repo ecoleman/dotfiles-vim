@@ -31,3 +31,6 @@
 [submodule "bundle/textile-for-vim"]
 	path = bundle/textile-for-vim
 	url = git://github.com/vim-scripts/Textile-for-VIM.git
+[submodule "bundle/command-t"]
+	path = bundle/command-t
+	url = git://github.com/wincent/Command-T.git
