@@ -3,6 +3,10 @@ set nocompatible
 
 filetype off
 
+if ! has('gui')
+  let g:pathogen_disabled = ['CSApprox']
+endif
+
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
