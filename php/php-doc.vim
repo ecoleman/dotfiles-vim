@@ -312,7 +312,7 @@ func! PhpDocFunc()
     " Local indent
     let l:txtBOL = g:pdv_cfg_BOL . l:indent
 
-		exec l:txtBOL . "/* " . l:scope ." ".  funcname . "(" . l:params . ") {{" . "{ */ " . g:pdv_cfg_EOL
+		"exec l:txtBOL . "/* " . l:scope ." ".  funcname . "(" . l:params . ") {{" . "{ */ " . g:pdv_cfg_EOL
 	
     exe l:txtBOL . g:pdv_cfg_CommentHead . g:pdv_cfg_EOL
 		" added folding
@@ -358,7 +358,8 @@ func! PhpDocFunc()
 	" Close the comment block.
 	exe l:txtBOL . g:pdv_cfg_CommentTail . g:pdv_cfg_EOL
 
-  return l:modifier ." ". l:funcname . PhpDocFuncEndAuto()
+  "return l:modifier ." ". l:funcname . PhpDocFuncEndAuto()
+  return l:modifier ." ". l:funcname
 endfunc
 
 " }}}  
