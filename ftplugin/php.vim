@@ -9,3 +9,5 @@ nnoremap <C-P> :call PhpDocSingle()<CR>
 vnoremap <C-P> :call PhpDocRange()<CR>
 " }}}
 
+setlocal dictionary+=$HOME/.vim/php/phpfunclist
+setlocal dictionary+=$HOME/.vim/php/phpproto
