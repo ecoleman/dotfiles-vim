@@ -50,13 +50,16 @@ set mouse-=a
 noremap <C-d> :NERDTreeToggle<CR>
 
 " autocomplete funcs and identifiers for languages
-"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-"autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType php set softtabstop=4
 autocmd FileType php set shiftwidth=4
+
+if has("autocmd") && exists("+omnifunc")
+  autocmd Filetype *
+  \	if &omnifunc == "" |
+  \		setlocal omnifunc=syntaxcomplete#Complete |
+  \	endif
+endif
+
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead Thorfile set ft=ruby
 
@@ -92,4 +95,5 @@ command WW w !sudo tee % > /dev/null
 
 " supertab settings
 let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
