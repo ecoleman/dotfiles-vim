@@ -1,0 +1,9 @@
+ctags-exuberant -f ~/.vim.tags/pf_core \
+-h ".php" -R \
+--exclude="\.svn" \
+--exclude="*\.sql" \
+--totals=yes \
+--tag-relative=yes \
+--fields=+afkst \
+--PHP-kinds=+cf ~/www/phpfission/core/classes ~/www/phpfission/core/functions
+
