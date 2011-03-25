@@ -41,7 +41,7 @@ set nowrap
 set mouse-=a
 
 :set t_Co=256
-:colorscheme no_quarter
+:colorscheme wombat 
 
 ":set foldenable foldmethod=manual
 :set foldenable foldmethod=marker
