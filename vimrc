@@ -95,5 +95,6 @@ command WW w !sudo tee % > /dev/null
 
 " supertab settings
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+let g:SuperTabContextDefaultCompletionType = "<C-X><C-O>"
+"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
