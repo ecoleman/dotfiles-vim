@@ -128,18 +128,7 @@ if bufwinnr(1)
   map - <C-W>-
 endif
 
-"command WW w !sudo tee % > /dev/null
-"cmap w!! w !sudo tee >/dev/null %
-"command! -bar -nargs=0 SudoW :silent exe “write !sudo tee % >/dev/null” | silent edit!
-autocmd FileChangedRo *
-  \ echohl WarningMsg | 
-  \ echo "File changed RO" |
-  \ echohl None
-autocmd FileChangedShell *
-  \ echohl WarningMsg |
-  \ echo "File has been changed outside of vim." | 
-  \ echohl None 
-"command WW w !sudo tee % > /dev/null
+cmap w!! w !sudo tee >/dev/null %
 
 " supertab settings
 let g:SuperTabDefaultCompletionType = "context"
