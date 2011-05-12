@@ -10,9 +10,17 @@ endif
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
-syntax on
+"syntax on
+syntax enable
 filetype on
 filetype plugin indent on
+
+set t_Co=256
+set background=dark
+colorscheme wombat 
+"let g:solarized_termcolors=256
+"colorscheme solarized
+
 
 " Pasting toggle...
 :set pastetoggle=<Ins>
@@ -74,8 +82,6 @@ set nowrap
 
 set mouse-=a
 
-:set t_Co=256
-:colorscheme wombat 
 
 ":set foldenable foldmethod=manual
 :set foldenable foldmethod=marker
