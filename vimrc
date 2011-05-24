@@ -13,6 +13,7 @@ call pathogen#helptags()
 "syntax on
 syntax enable
 filetype on
+
 filetype plugin indent on
 
 set t_Co=256
@@ -80,7 +81,9 @@ set backspace=indent,eol,start
 
 set nowrap
 
-set mouse-=a
+if has('gui')
+  set mouse+=a
+endif
 
 
 ":set foldenable foldmethod=manual
