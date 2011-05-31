@@ -1,5 +1,5 @@
 
-set background=dark
+set background=light
 colorscheme solarized
 
 set guifont=Monaco\ 10
