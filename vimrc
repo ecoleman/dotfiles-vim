@@ -124,13 +124,13 @@ autocmd BufNewFile,BufRead Thorfile set ft=ruby
 :Ltag pf_cms-trunk
 
 " PHP syntax settings
-:let php_sql_query=1
-:let php_htmlInStrings=1
+let php_sql_query=1
+let php_htmlInStrings=1
 ":let php_folding=1
-:let php_parent_error_close=1
-:let php_parent_error_open=1
+let php_parent_error_close=1
+let php_parent_error_open=1
 
-:let bash_is_sh=1
+":let bash_is_sh=1
 
 if bufwinnr(1)
   map + <C-W>+
@@ -143,4 +143,14 @@ cmap w!! w !sudo tee >/dev/null %
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<C-X><C-O>"
 "let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+
+" Syntastic Config
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2 " 1 = auto open & close, 3 = auto close
+let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 
