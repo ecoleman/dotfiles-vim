@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 #FIELDS="+afkst"
 FIELDS="+afksSimt"
@@ -6,9 +6,12 @@ CTAGS=ctags
 
 CORE_PATH=${CORE_PATH:-/srv/phpfission/core}
 CMS_PATH=${CMS_PATH:-/srv/phpfission/projects/cms/trunk}
+TAGDIR=~/.vim.tags
+
+[ ! -d $TAGDIR ] && mkdir $TAGDIR
 
 echo "Generating Core Tags"
-time $CTAGS -f ~/.vim.tags/pf_core \
+time $CTAGS -f $TAGDIR/pf_core \
 -h ".php" -R \
 --exclude="\.svn" \
 --exclude="*\.sql" \
@@ -18,7 +21,7 @@ time $CTAGS -f ~/.vim.tags/pf_core \
 --PHP-kinds=+cf "$CORE_PATH/classes" "$CORE_PATH/functions"
 
 echo "Generating Trunk CMS Tags"
-time $CTAGS -f ~/.vim.tags/pf_cms-trunk \
+time $CTAGS -f $TAGDIR/pf_cms-trunk \
 -h ".php" -R \
 --exclude="\.svn" \
 --exclude="*\.sql" \
