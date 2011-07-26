@@ -22,9 +22,10 @@ colorscheme wombat
 "let g:solarized_termcolors=256
 "colorscheme solarized
 
+let mapleader=','
 
 " Pasting toggle...
-:set pastetoggle=<Ins>
+set pastetoggle=<Ins>
 
 " searching
 set hlsearch
