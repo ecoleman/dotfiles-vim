@@ -3,14 +3,14 @@ set nocompatible
 
 filetype off
 
+source ~/.vim/bundle/pathogen/autoload/pathogen.vim
+
 if ! has('gui')
   let g:pathogen_disabled = ['CSApprox']
 endif
 
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+call pathogen#infect()
 
-"syntax on
 syntax enable
 filetype on
 
