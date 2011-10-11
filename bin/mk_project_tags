@@ -1,24 +1,10 @@
 #!/bin/bash
 
-#FIELDS="+afkst"
-FIELDS="+afksSimt"
-CTAGS=ctags
-
-TAGDIR=~/.vim.tags
-
-[ ! -d $TAGDIR ] && mkdir $TAGDIR
+. ~/.vim/bin/tag_helper
 
 PROJDIR=$(pwd)
 PROJNAME=$(basename $PROJDIR)
 
 echo "Generating $PROJNAME Tags"
-time $CTAGS -f $TAGDIR/$PROJNAME \
--h ".php" -R \
---exclude="\.svn" \
---exclude="*\.sql" \
---totals=yes \
---tag-relative=yes \
---fields=$FIELDS \
---languages=php \
---PHP-kinds=+cf "$PROJDIR"
+gen_php_tags $TAGDIR/$PROJNAME $PROJDIR
 

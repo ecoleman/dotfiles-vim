@@ -1,0 +1,24 @@
+#!/bin/bash
+
+FIELDS="+afksSimt"
+CTAGS=ctags
+TAGDIR=~/.vim/tags
+
+[ ! -d $TAGDIR ] && mkdir $TAGDIR
+
+function gen_php_tags
+{
+  tagfile=$1
+  shift 1
+
+  time $CTAGS -f $tagfile \
+    -h ".php" -R \
+    --exclude="\.svn" \
+    --exclude="*\.sql" \
+    --totals=yes \
+    --tag-relative=yes \
+    --fields=$FIELDS \
+    --PHP-kinds=+cf $@
+  echo ""
+}
+
