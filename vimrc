@@ -18,6 +18,7 @@ filetype plugin indent on
 
 set t_Co=256
 set background=dark
+let g:solarized_contrast="high"
 colorscheme wombat 
 "let g:solarized_termcolors=256
 "colorscheme solarized
@@ -90,8 +91,18 @@ endif
 ":set foldenable foldmethod=manual
 :set foldenable foldmethod=marker
 
-" Mappings
+" Nerd Tree
 noremap <C-d> :NERDTreeToggle<CR>
+let NERDChristmasTree=1
+let NERDTreeHijackNetrw=0
+let NERDTreeMouseMode=2
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=1
+
+" Tagbar
+nnoremap <silent> <F9> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+let g:tagbar_usearrows = 1
 
 " autocomplete funcs and identifiers for languages
 au FileType php set omnifunc=phpcomplete#CompletePHP
@@ -108,12 +119,13 @@ autocmd FileType php set shiftwidth=4
 
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead Thorfile set ft=ruby
+autocmd BufNewFile,BufRead *.tml setf fission
 
 " Load a tag file
 " Loads a tag file from ~/.vim.tags/, based on the argument provided. The
 " command "Ltag"" is mapped to this function.
 :function! LoadTags(file)
-:   let tagspath = $HOME . "/.vim.tags/" . a:file
+:   let tagspath = $HOME . "/.vim/tags/" . a:file
 :   let tagcommand = 'set tags+=' . tagspath
 :   execute tagcommand
 :endfunction
@@ -121,8 +133,9 @@ autocmd BufNewFile,BufRead Thorfile set ft=ruby
 
 " These are tag files I've created; you may want to remove/change these for your
 " own usage.
-:Ltag pf_core
-:Ltag pf_cms-trunk
+Ltag pf_core
+Ltag pf_cms-trunk
+Ltag pf_core-classlib
 
 " PHP syntax settings
 let php_sql_query=1
@@ -153,5 +166,13 @@ let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+" Tabular
+"if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+"endif
 
 
