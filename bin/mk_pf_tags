@@ -2,14 +2,17 @@
 
 . ~/.vim/bin/tag_helper
 
-CORE_PATH=${CORE_PATH:-/srv/phpfission/core}
-CMS_PATH=${CMS_PATH:-/srv/phpfission/projects/cms/trunk}
+CORE_PATH=${CORE_PATH:-/srv/fission/core}
+CMS_PATH=${CMS_PATH:-/srv/fission/cms/v2.0.0}
 
 echo "Generating Core Tags"
 gen_php_tags $TAGDIR/pf_core "$CORE_PATH/classes" "$CORE_PATH/functions"
 
 echo "Generating Core Class Library Tags"
 gen_php_tags $TAGDIR/pf_core-classlib "$CORE_PATH/class_library"
+
+echo "Generating Fission 2 Core Class Tags"
+gen_php_tags $TAGDIR/pf_core-v2src "$CORE_PATH/src"
 
 echo "Generating Trunk CMS Tags"
 gen_php_tags $TAGDIR/pf_cms-trunk $CMS_PATH
