@@ -100,15 +100,18 @@ let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
 
 " Tagbar
-nnoremap <silent> <F9> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 let g:tagbar_usearrows = 1
+
+nnoremap <silent> <F2> :BufExplorer<CR>
+nnoremap <silent> <F3> :TagbarToggle<CR>
 
 " autocomplete funcs and identifiers for languages
 au FileType php set omnifunc=phpcomplete#CompletePHP
 "autocmd FileType php set omnifunc=phpcomplete#Complete
 autocmd FileType php set softtabstop=4
 autocmd FileType php set shiftwidth=4
+autocmd FileType php set keywordprg=pman
 
 "if has("autocmd") && exists("+omnifunc")
   "autocmd Filetype *
@@ -120,6 +123,9 @@ autocmd FileType php set shiftwidth=4
 autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead Thorfile set ft=ruby
 autocmd BufNewFile,BufRead *.tml setf fission
+
+" autoload skeletons from ~/.vim/skel
+autocmd! BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
 
 " Load a tag file
 " Loads a tag file from ~/.vim.tags/, based on the argument provided. The

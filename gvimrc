@@ -1,6 +1,6 @@
 
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme bubblegum
 
 set guifont=Monaco\ 10
 
