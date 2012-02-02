@@ -8,4 +8,5 @@ set guifont=Monaco\ 10
 set guioptions-=T
 set guioptions-=l
 set guioptions-=L
+set guioptions-=m
 
