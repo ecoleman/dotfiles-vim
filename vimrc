@@ -91,17 +91,33 @@ endif
 ":set foldenable foldmethod=manual
 :set foldenable foldmethod=marker
 
-" Nerd Tree
-noremap <C-d> :NERDTreeToggle<CR>
-let NERDChristmasTree=1
-let NERDTreeHijackNetrw=0
-let NERDTreeMouseMode=2
-let NERDTreeMinimalUI=1
-let NERDTreeDirArrows=1
+" Plugins {
+  " Nerd Tree
+  noremap <C-d> :NERDTreeToggle<CR>
+  let NERDChristmasTree=1
+  let NERDTreeHijackNetrw=0
+  let NERDTreeMouseMode=2
+  let NERDTreeMinimalUI=1
+  let NERDTreeDirArrows=1
 
-" Tagbar
-let g:tagbar_autofocus = 1
-let g:tagbar_usearrows = 1
+  " Tagbar
+  let g:tagbar_autofocus = 1
+  let g:tagbar_usearrows = 1
+  let g:tagbar_type_php  = {
+    \ 'ctagstype' : 'php',
+    \ 'kinds'     : [
+        \ 'i:interfaces',
+        \ 'c:classes',
+        \ 'd:constant definitions',
+        \ 'f:functions',
+        \ 'j:javascript functions:1'
+    \ ]
+  \ }
+  
+  " Taglist {
+  let Tlist_php_settings = 'php;c:class;d:constant;f:function'
+  " }
+" }
 
 nnoremap <silent> <F2> :BufExplorer<CR>
 nnoremap <silent> <F3> :TagbarToggle<CR>
@@ -181,4 +197,5 @@ set statusline+=%*
   vmap <Leader>a: :Tabularize /:\zs<CR>
 "endif
 
+set autoread
 
