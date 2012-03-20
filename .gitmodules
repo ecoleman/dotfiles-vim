@@ -81,4 +81,5 @@
 	url = git://github.com/EvanDotPro/phpcomplete.vim.git
 [submodule "bundle/vim-less"]
 	path = bundle/vim-less
-	url = https://github.com/groenewege/vim-less.git
+	url = git://github.com/groenewege/vim-less.git
+
