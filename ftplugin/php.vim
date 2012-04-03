@@ -9,5 +9,10 @@ nnoremap <C-P> :call PhpDocSingle()<CR>
 vnoremap <C-P> :call PhpDocRange()<CR>
 " }}}
 
+setlocal omnifunc=phpcomplete#CompletePHP
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal keywordprg=/usr/bin/pman
+
 setlocal dictionary+=$HOME/.vim/php/phpfunclist
 setlocal dictionary+=$HOME/.vim/php/phpproto

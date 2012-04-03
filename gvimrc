@@ -1,6 +1,7 @@
 
 set background=dark
-colorscheme bubblegum
+"colorscheme bubblegum
+colorscheme inkpot
 
 set guifont=Monaco\ 10
 

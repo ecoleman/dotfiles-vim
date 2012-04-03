@@ -19,7 +19,7 @@ filetype plugin indent on
 set t_Co=256
 set background=dark
 let g:solarized_contrast="high"
-colorscheme wombat 
+colorscheme wombat
 "let g:solarized_termcolors=256
 "colorscheme solarized
 
@@ -33,8 +33,8 @@ set hlsearch
 set incsearch
 
 " tabs
-set softtabstop=2
-set shiftwidth=2
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 
 set smarttab
@@ -113,7 +113,7 @@ endif
         \ 'j:javascript functions:1'
     \ ]
   \ }
-  
+
   " Taglist {
   let Tlist_php_settings = 'php;c:class;d:constant;f:function'
   " }
@@ -123,11 +123,12 @@ nnoremap <silent> <F2> :BufExplorer<CR>
 nnoremap <silent> <F3> :TagbarToggle<CR>
 
 " autocomplete funcs and identifiers for languages
-au FileType php set omnifunc=phpcomplete#CompletePHP
 "autocmd FileType php set omnifunc=phpcomplete#Complete
-autocmd FileType php set softtabstop=4
-autocmd FileType php set shiftwidth=4
-autocmd FileType php set keywordprg=pman
+
+"au FileType php set omnifunc=phpcomplete#CompletePHP
+"autocmd FileType php set softtabstop=4
+"autocmd FileType php set shiftwidth=4
+"autocmd FileType php set keywordprg=pman
 
 "if has("autocmd") && exists("+omnifunc")
   "autocmd Filetype *
@@ -155,9 +156,9 @@ autocmd! BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
 
 " These are tag files I've created; you may want to remove/change these for your
 " own usage.
-Ltag pf_core
-Ltag pf_cms-trunk
-Ltag pf_core-classlib
+"Ltag pf_core
+"Ltag pf_cms-trunk
+"Ltag pf_core-classlib
 
 " PHP syntax settings
 let php_sql_query=1
@@ -181,13 +182,13 @@ let g:SuperTabContextDefaultCompletionType = "<C-X><C-O>"
 "let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 " Syntastic Config
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2 " 1 = auto open & close, 3 = auto close
-let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+"let g:syntastic_enable_signs=1
+"let g:syntastic_auto_loc_list=2 " 1 = auto open & close, 3 = auto close
+"let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 " Tabular
 "if exists(":Tabularize")
@@ -198,4 +199,6 @@ set statusline+=%*
 "endif
 
 set autoread
+
+autocmd BufWritePre * :%s/\s\+$//e
 
