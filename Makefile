@@ -1,13 +1,15 @@
-install: install-vim
 
-install-vim:
-	rm -rf ~/.vimrc
-	rm -rf ~/.gvimrc
-	ln -s `pwd`/vimrc ~/.vimrc
-	ln -s `pwd`/gvimrc ~/.gvimrc
+VUNDLE=~/.vim/bundle/vundle
 
-update:
-	git submodule update --init
-	git submodule foreach git pull origin master
-	@echo "You should review & commit updates submodules"
+install: $(VUNDLE)
+	@rm -f ~/.vimrc
+	@rm -f ~/.gvimrc
+	@rm -f ~/.ctags
+	@ln -s `pwd`/vimrc ~/.vimrc
+	@ln -s `pwd`/gvimrc ~/.gvimrc
+	@ln -s `pwd`/ctags ~/.ctags
+	@vim +BundleInstall +qall
+
+$(VUNDLE):
+	@git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 

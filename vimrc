@@ -1,204 +1,182 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
 
-set nocompatible
+" Setup Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
 
-filetype off
+" Bundles
+Bundle 'ap/vim-css-color'
+Bundle 'AndrewRadev/switch.vim'
+Bundle 'arnaud-lb/vim-php-namespace'
+Bundle 'beyondwords/vim-twig'
+Bundle 'docunext/closetag.vim'
+Bundle 'ervandew/supertab'
+"Bundle 'EvanDotPro/phpcomplete.vim'
+"Bundle 'shawncplus/phpcomplete.vim'
+Bundle 'groenewege/vim-less'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'majutsushi/tagbar'
+Bundle 'mileszs/ack.vim'
+Bundle 'mikehaertl/pdv-standalone'
+Bundle 'othree/html5.vim'
+Bundle 'Raimondi/delimitMate'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-endwise'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'vim-scripts/bufexplorer.zip'
+Bundle 'vim-scripts/inline_edit.vim'
 
-source ~/.vim/bundle/pathogen/autoload/pathogen.vim
+" Colors
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'endel/vim-github-colorscheme'
 
-if ! has('gui')
-  let g:pathogen_disabled = ['CSApprox']
-endif
+let g:solarized_contrast="high" " Enable high contrast if using solarized
 
-call pathogen#infect()
-
-syntax enable
-filetype on
-
-filetype plugin indent on
-
-set t_Co=256
-set background=dark
-let g:solarized_contrast="high"
-colorscheme wombat
-"let g:solarized_termcolors=256
-"colorscheme solarized
+runtime! macros/matchit.vim " Enable matchit
+set shortmess +=I           " Disable Splash Screen
 
 let mapleader=','
 
-" Pasting toggle...
-set pastetoggle=<Ins>
+set encoding=utf-8
+set mouse+=a      " enable the mouse... naughty
 
-" searching
-set hlsearch
-set incsearch
+set visualbell    " beep beep, no moar
+set autoread      " auto read changes to files
+"set nohidden
+set laststatus=2  " always show status line
 
-" tabs
-set softtabstop=4
-set shiftwidth=4
-set expandtab
+set number   " enable line numbers
+set ruler    " show cursor position
 
-set smarttab
-set smartindent
+" Global Undo
+set undodir=~/.vim/.undo
+set undofile
+set undolevels=1000  " maximum number of changes that can be undone
+set undoreload=10000 " maximum number lines to save for undo on a buffer reload
 
-set ruler
-set number
+" no moar backup/swap files
+set nobackup
+set noswapfile
+set nowritebackup
 
-" status crap
-set ls=2
-if has('statusline')
-  " Status line detail:
-   " %f     file path
-   " %y     file type between braces (if defined)
-   " %([%R%M]%)   read-only, modified and modifiable flags between braces
-   " %{'!'[&ff=='default_file_format']}
-   "        shows a '!' if the file format is not the platform
-   "        default
-   " %{'$'[!&list]}  shows a '*' if in list mode
-   " %{'~'[&pm=='']} shows a '~' if in patchmode
-   " (%{synIDattr(synID(line('.'),col('.'),0),'name')})
-   "        only for debug : display the current syntax item name
-   " %=     right-align following items
-   " #%n    buffer number
-   " %l/%L,%c%V   line number, total number of lines, and column number
-   function SetStatusLineStyle()
-      if &stl == '' || &stl =~ 'synID'
-         "let &stl="%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L] "
-         let &stl="%f %y%([%R%M]%)%{'!'[&ff=='".&ff."']}%{'$'[!&list]}%{'~'[&pm=='']}%=#%n %l/%L,%c%V "
-      else
-         let &stl="%f %y%([%R%M]%)%{'!'[&ff=='".&ff."']}%{'$'[!&list]} (%{synIDattr(synID(line('.'),col('.'),0),'name')})%=#%n %l/%L,%c%V "
-      endif
-   endfunc
-   " Switch between the normal and vim-debug modes in the status line
-   nmap _ds :call SetStatusLineStyle()<CR>
-   call SetStatusLineStyle()
-   " Window title
-   if has('title')
-      set titlestring=%t%(\ [%R%M]%)
-   endif
-endif
+" Whitespace & Indenting
+set autoindent                  " use previous line indent for newline
+set smarttab                    " insert tabs on the start of a line according to shiftwidth, not tabstop
+set nowrap                      " disable line wrapping
+"set colorcolumn=80              " visual indicator at 80 chars
+set tabstop=2                   " display tabs as 2 spaces
+set shiftwidth=2                " Use 2 shifts for < and > shifting
+set shiftround                  " Use multiple of shiftwidth when indenting with '<' and '>'
+set softtabstop=2               " Use 2 spaces when hitting tab in insert mode
+set expandtab                   " Expand tabs to spaces in insert mode
 
-set showmatch
-set matchtime=1
-set backspace=indent,eol,start
+" Searching
+set ignorecase     " ignore term case
+set hlsearch       " highlight matched terms
+set incsearch      " highlight as we search
 
-set nowrap
+" Misc
+set foldenable foldmethod=marker
+set showmatch      " highlight matching parenthesis
+set ttyfast
+set wildmenu
+set wildmode=list:longest
+set wildignore+=*/_build/*,*/_cache/*,*/docs/*,*/cache/*
 
-if has('gui')
-  set mouse+=a
-endif
+" Turn filetype back on and enable syntax
+syntax on
+filetype plugin indent on
 
+" Enable omni completion
+set ofu=syntaxcomplete#Complete
 
-":set foldenable foldmethod=manual
-:set foldenable foldmethod=marker
+" Declare some filetypes
+au BufNewFile,BufRead {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,Guardfile} set ft=ruby
+au BufNewFile,BufRead *.json set ft=javascript
+au BufNewFile,BufRead *vhost*.conf set ft=apache
 
-" Plugins {
-  " Nerd Tree
-  noremap <C-d> :NERDTreeToggle<CR>
-  let NERDChristmasTree=1
-  let NERDTreeHijackNetrw=0
-  let NERDTreeMouseMode=2
-  let NERDTreeMinimalUI=1
-  let NERDTreeDirArrows=1
+" Load closetag for html files
+au FileType html,jinjahtml,eruby,twig,html.twig let b:closetag_html_style=1
+au FileType html,xhtml,xml,jinjahtml,eruby,twig,html.twig source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
 
-  " Tagbar
-  let g:tagbar_autofocus = 1
-  let g:tagbar_usearrows = 1
-  let g:tagbar_type_php  = {
+" Plugin Settings
+let g:ackprg = 'ag --nogroup --nocolor --column' " use the_silver_searcher instead of ack
+
+" {{{ ctrlp
+let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_working_path_mode = 0
+" }}}
+
+" {{{ nerdtree
+let NERDChristmasTree   = 1
+let NERDTreeHijackNetrw = 0
+let NERDTreeMouseMode   = 2
+let NERDTreeMinimalUI   = 1
+let NERDTreeDirArrows   = 1
+" }}}
+
+" {{{ Tagbar
+let g:tagbar_autofocus = 1
+let g:tagbar_type_php  = {
     \ 'ctagstype' : 'php',
     \ 'kinds'     : [
-        \ 'i:interfaces',
-        \ 'c:classes',
-        \ 'd:constant definitions',
-        \ 'f:functions',
-        \ 'j:javascript functions:1'
+      \ 'i:interfaces',
+      \ 'c:classes',
+      \ 'd:constant definitions',
+      \ 'f:functions',
+      \ 'j:javascript functions:1'
     \ ]
   \ }
+let g:tagbar_compact=1
+" }}}
 
-  " Taglist {
-  let Tlist_php_settings = 'php;c:class;d:constant;f:function'
-  " }
-" }
+" {{{ supertab
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabLongestHighlight = 1
+let g:SuperTabNoCompleteAfter = ['^', ':', '\s', ']', ')', '"', "'"]
+let g:SuperTabRetainCompletionDuration = 'completion' " defaults to 'insert'
+" }}}
 
-nnoremap <silent> <F2> :BufExplorer<CR>
-nnoremap <silent> <F3> :TagbarToggle<CR>
+" {{{ Inline Edit
+let g:inline_edit_autowrite = 1  " Auto write when saving buffer
+" }}}
 
-" autocomplete funcs and identifiers for languages
-"autocmd FileType php set omnifunc=phpcomplete#Complete
+" PDV {{{
+nnoremap <C-P> :call PhpDocSingle()<CR>
+vnoremap <C-P> :call PhpDocRange()<CR>
 
-"au FileType php set omnifunc=phpcomplete#CompletePHP
-"autocmd FileType php set softtabstop=4
-"autocmd FileType php set shiftwidth=4
-"autocmd FileType php set keywordprg=pman
+let g:pdv_cfg_Author    = "Eric Coleman <eric@colemando.com>"
+let g:pdv_cfg_ReturnVal = ""
+" }}}
 
-"if has("autocmd") && exists("+omnifunc")
-  "autocmd Filetype *
-  "\	if &omnifunc == "" |
-  "\		setlocal omnifunc=syntaxcomplete#Complete |
-  "\	endif
-"endif
-
-autocmd BufNewFile,BufRead *.json set ft=javascript
-autocmd BufNewFile,BufRead Thorfile set ft=ruby
-autocmd BufNewFile,BufRead *.tml setf fission
-
-" autoload skeletons from ~/.vim/skel
-autocmd! BufNewFile * silent! 0r ~/.vim/skel/tmpl.%:e
-
-" Load a tag file
-" Loads a tag file from ~/.vim.tags/, based on the argument provided. The
-" command "Ltag"" is mapped to this function.
-:function! LoadTags(file)
-:   let tagspath = $HOME . "/.vim/tags/" . a:file
-:   let tagcommand = 'set tags+=' . tagspath
-:   execute tagcommand
-:endfunction
-:command! -nargs=1 Ltag :call LoadTags("<args>")
-
-" These are tag files I've created; you may want to remove/change these for your
-" own usage.
-"Ltag pf_core
-"Ltag pf_cms-trunk
-"Ltag pf_core-classlib
-
-" PHP syntax settings
-let php_sql_query=1
-let php_htmlInStrings=1
-":let php_folding=1
-let php_parent_error_close=1
-let php_parent_error_open=1
-
-":let bash_is_sh=1
-
-if bufwinnr(1)
-  map + <C-W>+
-  map - <C-W>-
+" Keyboard Shortcuts
+if has("mac")
+  nnoremap <silent> <D-2> :BufExplorer<CR>
+  nnoremap <silent> <D-3> :TagbarToggle<CR>
+  noremap <silent> <D-4> :NERDTreeToggle<CR>
+else
+  nnoremap <silent> <F2> :BufExplorer<CR>
+  nnoremap <silent> <F3> :TagbarToggle<CR>
+  noremap <F4> :NERDTreeToggle<CR>
 endif
 
-cmap w!! w !sudo tee >/dev/null %
+" trigger switch.vim using -
+nnoremap - :Switch<cr>
 
-" supertab settings
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<C-X><C-O>"
-"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-
-" Syntastic Config
-"let g:syntastic_enable_signs=1
-"let g:syntastic_auto_loc_list=2 " 1 = auto open & close, 3 = auto close
-"let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
-
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-" Tabular
-"if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-"endif
-
-set autoread
-
+" automatically trim trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Use w!! to sudo write after opening a file without sudo rights
+cmap w!! w !sudo tee % >/dev/null
 
